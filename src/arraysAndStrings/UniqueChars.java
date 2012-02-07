@@ -21,8 +21,6 @@ public class UniqueChars {
     for (int i = 0; i < string.length() - 1; i++) {
       for (int j = i + 1; j < string.length(); j++) {
         if (string.charAt(i) == string.charAt(j)) {
-          System.out.format("i: %d\n", i);
-          System.out.format("j: %d\n", j);
           return false;
         }
       }
