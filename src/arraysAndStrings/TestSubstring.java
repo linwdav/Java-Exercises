@@ -5,13 +5,13 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * Test UniqueChars program.
+ * Test Substring program.
  * @author David Lin
  */
 public class TestSubstring {
 
   /**
-   * JUnit test on UniqueChars.
+   * JUnit test on Substring.
    */
   @Test
   public void testSubstring() {

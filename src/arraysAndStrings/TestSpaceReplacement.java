@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * Test Anagrams program.
+ * Test SpaceReplacement program.
  * @author David Lin
  */
 public class TestSpaceReplacement {
