@@ -1,7 +1,8 @@
 package linkedLists;
 
 /**
- * Write code to remove duplicates from an unsorted linked list.
+ * Write code to remove duplicates from an unsorted linked list. How would you solve this problem if
+ * a temporary buffer is not allowed?
  * @author David Lin
  */
 public class RemoveDuplicates {
@@ -16,7 +17,23 @@ public class RemoveDuplicates {
    * @param head Head of linked list
    */
   public void removeDuplicates(Node head) {
-    Node node = head;
+    Node nodePos = head;
+    while (nodePos.getNext() != null) {
+      Node node = nodePos;
+      String data = node.getData();
+      while (node.getNext() != null) {
+        if (node.getNext().getData().compareTo(data) == 0) {
+          node.setNext(node.getNext().getNext());
+          // Do not advance the node so we can keep comparing
+          continue;
+        }
+        node = node.getNext();
+      }
+      // Cover the case where the head node is the only one remaining
+      if (nodePos.getNext() != null) {
+        nodePos = nodePos.getNext();
+      }
+    }
   }
 
 }

@@ -14,7 +14,7 @@ public class Node {
    * @param data Data in node
    */
   public Node(String data) {
-    this.data = "";
+    this.data = data;
     next = null;
   }
 
