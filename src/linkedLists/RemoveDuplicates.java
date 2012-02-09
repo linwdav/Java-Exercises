@@ -18,9 +18,11 @@ public class RemoveDuplicates {
    */
   public void removeDuplicates(Node head) {
     Node nodePos = head;
+    // First while loop iterates through each unique node in linked list
     while (nodePos.getNext() != null) {
       Node node = nodePos;
       String data = node.getData();
+      // Second while loop compares every other node with nodePos
       while (node.getNext() != null) {
         if (node.getNext().getData().compareTo(data) == 0) {
           node.setNext(node.getNext().getNext());
