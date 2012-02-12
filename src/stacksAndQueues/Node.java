@@ -1,4 +1,4 @@
-package linkedLists;
+package stacksAndQueues;
 
 /**
  * Node that can be used in linked list.
