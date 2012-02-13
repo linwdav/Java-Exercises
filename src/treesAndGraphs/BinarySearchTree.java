@@ -16,99 +16,6 @@ public class BinarySearchTree {
   }
 
   /**
-   * Node for use in a binary tree.
-   */
-  private static class Node {
-    Node left = null;
-    Node right = null;
-    String data = "";
-
-    /**
-     * Default constructor.
-     * @param data to store
-     */
-    public Node(String data) {
-      this.data = data;
-    }
-  }
-
-  /**
-   * Main method to test the program.
-   * @param args none
-   */
-  public static void main(String[] args) {
-    BinarySearchTree tree = new BinarySearchTree();
-    // Create tree from an arbitrary array
-    Node root = tree.makeTree(tree.getInitialData());
-
-    // Remove an element
-    tree.remove(root, "4");
-
-    // Add an element
-    tree.add(root, "4");
-
-    /*
-     * // Search for an element Node node = tree.search(root, "7"); if (node != null) {
-     * System.out.println("Node with value " + node.data + ": Found\n"); } // Get tree depth int
-     * depth = tree.getDepth(root); System.out.println("Tree depth: " + depth); // Print the tree
-     * tree.printPreorder(tree, root); tree.printInorder(tree, root); tree.printPostorder(tree,
-     * root); // Remove a random number of elements from the tree System.out.println();
-     * tree.removeRandom(tree, root); System.out.println(); // Get tree depth depth =
-     * tree.getDepth(root); System.out.println("Tree depth: " + depth);
-     */
-
-    // Print the tree
-    tree.printPreorder(tree, root);
-    tree.printInorder(tree, root);
-    tree.printPostorder(tree, root);
-  }
-
-  /**
-   * Preload elements in array with data.
-   * @return Array of data
-   */
-  public String[] getInitialData() {
-    int arraySize = 10;
-    String[] array = new String[arraySize];
-    for (int i = 0; i < arraySize; i++) {
-      array[i] = String.valueOf(i);
-    }
-    return array;
-  }
-
-  /**
-   * Create binary search tree.
-   * @param array of elements
-   * @return The root of the tree.
-   */
-  public Node makeTree(String[] array) {
-    int low = 0;
-    int high = array.length - 1;
-    return makeTree(low, high, array);
-  }
-
-  /**
-   * Create binary search tree.
-   * @param low The lowest array position.
-   * @param high The highest array position.
-   * @param array of elements
-   * @return The root of the tree.
-   */
-  private Node makeTree(int low, int high, String[] array) {
-    if (low > high) {
-      return null;
-    }
-    else {
-      // Same as (low + high) / 2
-      int mid = (low + high) >>> 1;
-      Node node = new Node(array[mid]);
-      node.left = makeTree(low, (mid - 1), array);
-      node.right = makeTree((mid + 1), high, array);
-      return node;
-    }
-  }
-
-  /**
    * Add a new node to the tree.
    * @param root The root node.
    * @param data The data in the new node to add.
@@ -119,19 +26,19 @@ public class BinarySearchTree {
     // Recurse down the tree until we reach the leaf node
     while (leaf != null) {
       node = leaf;
-      if (data.compareTo(leaf.data) <= 0) {
-        leaf = leaf.left;
+      if (data.compareTo(leaf.getData()) <= 0) {
+        leaf = leaf.getLeft();
       }
       else {
-        leaf = leaf.right;
+        leaf = leaf.getRight();
       }
     }
     // Attach a new node with the data
-    if (data.compareTo(node.data) <= 0) {
-      node.left = new Node(data);
+    if (data.compareTo(node.getData()) <= 0) {
+      node.setLeft(new Node(data));
     }
     else {
-      node.right = new Node(data);
+      node.setRight(new Node(data));
     }
   }
 
@@ -149,13 +56,13 @@ public class BinarySearchTree {
     Node y = node;
     boolean match = true;
     // Do binary search and look for a match
-    while (value.compareTo(x.data) != 0 && match) {
+    while (value.compareTo(x.getData()) != 0 && match) {
       y = x;
-      if (value.compareTo(x.data) < 0 && x.left != null) {
-        x = x.left;
+      if (value.compareTo(x.getData()) < 0 && x.getLeft() != null) {
+        x = x.getLeft();
       }
-      else if (value.compareTo(x.data) > 0 && x.right != null) {
-        x = x.right;
+      else if (value.compareTo(x.getData()) > 0 && x.getRight() != null) {
+        x = x.getRight();
       }
       else {
         // No match
@@ -165,28 +72,28 @@ public class BinarySearchTree {
 
     if (match) {
       // Case 0: Node to be removed is also the root
-      if (node.left == null && node.right == null) {
+      if (node.getLeft() == null && node.getRight() == null) {
         return;
       }
       // Case 1: Node to be removed is a leaf but not a root
-      else if (x.left == null && x.right == null) {
+      else if (x.getLeft() == null && x.getRight() == null) {
         // Remove the leaf from the tree
-        if (y.left == x) {
-          y.left = x.left;
+        if (y.getLeft() == x) {
+          y.setLeft(x.getLeft());
         }
-        else if (y.right == x) {
-          y.right = x.right;
+        else if (y.getRight() == x) {
+          y.setRight(x.getRight());
         }
       }
       // Case 2: Only right subtree exists
-      else if (x.left == null && x.right != null) {
+      else if (x.getLeft() == null && x.getRight() != null) {
         // Find leftmost child node in right subtree
-        x.data = findLeftmost(x).data;
+        x.setData(findLeftmost(x).getData());
       }
       // Case 3: Only left subtree exists
-      else if (x.left != null && x.right == null) {
+      else if (x.getLeft() != null && x.getRight() == null) {
         // Find rightmost child node in left subtree
-        x.data = findRightmost(x).data;
+        x.setData(findRightmost(x).getData());
       }
       // Case 4: Both subtrees exist
       else {
@@ -195,11 +102,11 @@ public class BinarySearchTree {
         int num = gen.nextInt(2);
         if (num == 0) {
           // Find rightmost child node in left subtree
-          x.data = findRightmost(x).data;
+          x.setData(findRightmost(x).getData());
         }
         else {
           // Find leftmost child node in right subtree
-          x.data = findLeftmost(x).data;
+          x.setData(findLeftmost(x).getData());
         }
       }
     }
@@ -226,7 +133,7 @@ public class BinarySearchTree {
     for (int i = 0; i < numToRemove; i++) {
       // Remove a random element
       int elementPosition = random.nextInt(array.size());
-      tree.remove(root, array.get(elementPosition).data);
+      tree.remove(root, array.get(elementPosition).getData());
       // Update the array to reflect the removal
       array.remove(elementPosition);
     }
@@ -244,16 +151,16 @@ public class BinarySearchTree {
       System.out.println("Unable to find node because it does not exist.");
     }
     // Base case 2, node found
-    else if (value.compareTo(node.data) == 0) {
+    else if (value.compareTo(node.getData()) == 0) {
       return node;
     }
     // If value is less than current node, go left
-    else if (value.compareTo(node.data) < 0) {
-      return search(node.left, value);
+    else if (value.compareTo(node.getData()) < 0) {
+      return search(node.getLeft(), value);
     }
     // If value is greater than current node, go right
-    else if (value.compareTo(node.data) > 0) {
-      return search(node.right, value);
+    else if (value.compareTo(node.getData()) > 0) {
+      return search(node.getRight(), value);
     }
     return null;
   }
@@ -265,35 +172,35 @@ public class BinarySearchTree {
    * @return The value of the leftmost node in the right subtree.
    */
   public Node findLeftmost(Node node) {
-    Node x = node.right;
+    Node x = node.getRight();
     Node y = node;
     Node leftmost = null;
 
     // Keep going left down the tree until we hit the leftmost node
-    while (x.left != null) {
+    while (x.getLeft() != null) {
       y = x;
-      x = x.left;
+      x = x.getLeft();
     }
     // Save the leftmost node
     leftmost = x;
 
     // Case 0: The leftmost node is a leaf. Delete it.
-    if (x.right == null) {
-      if (y.right == x) {
-        y.right = x.right;
+    if (x.getRight() == null) {
+      if (y.getRight() == x) {
+        y.setRight(x.getRight());
       }
       else {
-        y.left = x.left;
+        y.setLeft(x.getLeft());
       }
     }
     // Case 1: The leftmost node has a right subtree. Delete it.
     // Note: It is not possible for the leftmost node to have a left subtree.
-    else if (x.right != null) {
-      if (y.right == x) {
-        y.right = x.right;
+    else if (x.getRight() != null) {
+      if (y.getRight() == x) {
+        y.setRight(x.getRight());
       }
       else {
-        y.left = x.right;
+        y.setLeft(x.getRight());
       }
     }
     return leftmost;
@@ -306,35 +213,35 @@ public class BinarySearchTree {
    * @return The value of the rightmost node in the left subtree.
    */
   public Node findRightmost(Node node) {
-    Node x = node.left;
+    Node x = node.getLeft();
     Node y = node;
     Node rightmost = null;
 
     // Keep going right down the tree until we hit the rightmost node
-    while (x.right != null) {
+    while (x.getRight() != null) {
       y = x;
-      x = x.right;
+      x = x.getRight();
     }
     // Save the rightmost node
     rightmost = x;
 
     // Case 0: The rightmost node is a leaf. Delete it.
-    if (x.left == null) {
-      if (y.left == x) {
-        y.left = x.left;
+    if (x.getLeft() == null) {
+      if (y.getLeft() == x) {
+        y.setLeft(x.getLeft());
       }
       else {
-        y.right = x.right;
+        y.setRight(x.getRight());
       }
     }
     // Case 1: The rightmost node has a left subtree. Delete it.
     // Note: It is not possible for the rightmost node to have a right subtree.
-    else if (x.left != null) {
-      if (y.left == x) {
-        y.left = x.left;
+    else if (x.getLeft() != null) {
+      if (y.getLeft() == x) {
+        y.setLeft(x.getLeft());
       }
       else {
-        y.right = x.left;
+        y.setRight(x.getLeft());
       }
     }
     return rightmost;
@@ -358,8 +265,8 @@ public class BinarySearchTree {
   private List<Node> getPreorder(Node node, List<Node> array) {
     if (node != null) {
       array.add(node);
-      getPreorder(node.left, array);
-      getPreorder(node.right, array);
+      getPreorder(node.getLeft(), array);
+      getPreorder(node.getRight(), array);
     }
     return array;
   }
@@ -383,12 +290,12 @@ public class BinarySearchTree {
     if (node == null) {
       return array;
     }
-    if (node.left != null) {
-      getInorder(node.left, array);
+    if (node.getLeft() != null) {
+      getInorder(node.getLeft(), array);
     }
     array.add(node);
-    if (node.right != null) {
-      getInorder(node.right, array);
+    if (node.getRight() != null) {
+      getInorder(node.getRight(), array);
     }
     return array;
   }
@@ -412,11 +319,11 @@ public class BinarySearchTree {
     if (node == null) {
       return array;
     }
-    if (node.left != null) {
-      getPostorder(node.left, array);
+    if (node.getLeft() != null) {
+      getPostorder(node.getLeft(), array);
     }
-    if (node.right != null) {
-      getPostorder(node.right, array);
+    if (node.getRight() != null) {
+      getPostorder(node.getRight(), array);
     }
     array.add(node);
     return array;
@@ -432,7 +339,7 @@ public class BinarySearchTree {
       return 0;
     }
     int level = 1;
-    level += Math.max(getDepth(node.left), getDepth(node.right));
+    level += Math.max(getDepth(node.getLeft()), getDepth(node.getRight()));
     return level;
   }
 
@@ -446,7 +353,7 @@ public class BinarySearchTree {
     List<Node> preorder = tree.getPreorder(root);
     System.out.print("Preorder:\t");
     for (int i = 0; i < preorder.size(); i++) {
-      System.out.print(preorder.get(i).data + " ");
+      System.out.print(preorder.get(i).getData() + " ");
     }
     System.out.println();
   }
@@ -461,7 +368,7 @@ public class BinarySearchTree {
     List<Node> inorder = tree.getInorder(root);
     System.out.print("Inorder:\t");
     for (int i = 0; i < inorder.size(); i++) {
-      System.out.print(inorder.get(i).data + " ");
+      System.out.print(inorder.get(i).getData() + " ");
     }
     System.out.println();
   }
@@ -476,7 +383,7 @@ public class BinarySearchTree {
     List<Node> postorder = tree.getPostorder(root);
     System.out.print("Postorder:\t");
     for (int i = 0; i < postorder.size(); i++) {
-      System.out.print(postorder.get(i).data + " ");
+      System.out.print(postorder.get(i).getData() + " ");
     }
     System.out.println();
   }
