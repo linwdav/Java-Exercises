@@ -1,0 +1,26 @@
+Algorithm for BFS in quasi-pseudocode
+
+void BFS(Graph g, Node n) {
+
+  // Set status of all nodes in graph to unvisited
+  for (int i = 0; i < g.numNodes; i++) {
+    g.node(i).status = unvisited;
+  }
+  
+  // Create queue
+  Queue q = new Queue();
+  q.enqueue(n);
+  n.status = visited;
+  
+  // Do BFS iteratively
+  while (!q.isEmpty()) {
+    Node o = q.dequeue();
+    for (int i = 0; i < o.numChildren; i++) {
+      if (o.child(i).status == unvisited) {
+        o.child(i).status = visited;
+        q.enqueue(o.child(i));
+      }
+    }
+  }
+  
+}
