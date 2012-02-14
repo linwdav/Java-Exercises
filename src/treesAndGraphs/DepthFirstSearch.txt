@@ -1,0 +1,21 @@
+Algorithm for DFS in quasi-pseudocode
+
+void DFS(Graph g, Node n) {
+
+  // Set status of all nodes in graph to unvisited
+  for (int i = 0; i < g.numNodes; i++) {
+    g.node(i).status = unvisited;
+  }
+  
+  // If n has what we're looking for return it
+  
+  n.status = visited;
+  
+  // Do DFS recursively
+  for (int i = 0; i < n.numChildren; i++) {
+    if (n.child(i).status == unvisited) {
+      DFS(g, n.child(i));
+    }
+  }
+  
+}
