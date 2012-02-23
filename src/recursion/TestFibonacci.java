@@ -4,16 +4,16 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * Test Substring program.
+ * Test Fibonacci program.
  * @author David Lin
  */
 public class TestFibonacci {
 
   /**
-   * JUnit test on Substring.
+   * JUnit test on Fibonacci.
    */
   @Test
-  public void testSubstring() {
+  public void testFibonacci() {
     Fibonacci test = new Fibonacci();
     int a = test.fibonacci(0);
     int b = test.fibonacci(1);
