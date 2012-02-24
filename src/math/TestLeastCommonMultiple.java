@@ -20,12 +20,14 @@ public class TestLeastCommonMultiple {
     int c = test.findLCM(9, 9);
     int d = test.findLCM(0, 5);
     int e = test.findLCM(78, 80);
+    int f = test.findLCM(-1, -5);
 
     assertEquals("Failure", 10, a);
     assertEquals("Failure", 21, b);
     assertEquals("Failure", 9, c);
     assertEquals("Failure ", 0, d);
     assertEquals("Failure ", 3120, e);
+    assertEquals("Failure ", 0, f);
   }
 
 }
