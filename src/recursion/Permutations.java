@@ -31,10 +31,11 @@ public class Permutations {
       return list;
     }
 
+    // Loops through every letter in the string
     for (int i = 0; i < s.length(); i++) {
-      StringBuilder remainder = new StringBuilder(s);
-      remainder.deleteCharAt(i);
-      for (String word : permutations(String.valueOf(remainder))) {
+      // StringBuilder remainder = new StringBuilder(s);
+      // remainder.deleteCharAt(i);
+      for (String word : permutations(s.substring(0, i) + s.substring(i + 1))) {
         list.add(s.charAt(i) + word);
       }
     }
