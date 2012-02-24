@@ -23,13 +23,13 @@ public class TestFibonacci {
     int f = test.fibonacci(6);
     int g = test.fibonacci(12);
 
-    assertEquals("Fibonacci failed on n=0", a, 0);
-    assertEquals("Fibonacci failed on n=1", b, 1);
-    assertEquals("Fibonacci failed on n=2", c, 1);
-    assertEquals("Fibonacci failed on n=3", d, 2);
-    assertEquals("Fibonacci failed on n=4", e, 3);
-    assertEquals("Fibonacci failed on n=6", f, 8);
-    assertEquals("Fibonacci failed on n=12", g, 144);
+    assertEquals("Fibonacci failed on n=0", 0, a);
+    assertEquals("Fibonacci failed on n=1", 1, b);
+    assertEquals("Fibonacci failed on n=2", 1, c);
+    assertEquals("Fibonacci failed on n=3", 2, d);
+    assertEquals("Fibonacci failed on n=4", 3, e);
+    assertEquals("Fibonacci failed on n=6", 8, f);
+    assertEquals("Fibonacci failed on n=12", 144, g);
   }
 
 }

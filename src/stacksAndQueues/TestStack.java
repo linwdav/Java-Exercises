@@ -20,19 +20,19 @@ public class TestStack {
     Stack stack = new Stack();
     stack.push("a");
     assertFalse("Stack should not be empty", stack.isEmpty());
-    assertEquals("Stack size should be one", stack.size(), 1);
-    assertEquals("Wrong value for top stack element", stack.peek().getData(), "a");
-    assertEquals("Wrong value for top stack element", stack.pop().getData(), "a");
+    assertEquals("Stack size should be one", 1, stack.size());
+    assertEquals("Wrong value for top stack element", "a", stack.peek().getData());
+    assertEquals("Wrong value for top stack element", "a", stack.pop().getData());
     assertTrue("Stack should be empty", stack.isEmpty());
-    assertEquals("Stack size should be zero", stack.size(), 0);
+    assertEquals("Stack size should be zero", 0, stack.size());
 
     for (int i = 0; i < 10; i++) {
       stack.push(String.valueOf(i));
     }
-    assertEquals("Stack size should be ten", stack.size(), 10);
+    assertEquals("Stack size should be ten", 10, stack.size());
 
     for (int i = 9; i < -1; i--) {
-      assertEquals("Wrong value for top stack element", stack.pop().getData(), String.valueOf(i));
+      assertEquals("Wrong value for top stack element", String.valueOf(i), stack.pop().getData());
     }
   }
 

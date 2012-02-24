@@ -47,11 +47,11 @@ public class TestNode {
     
     // Test that the node with value 2 has been deleted
     node = head;
-    assertEquals("Error deleting node with value 2", node.getNext().getData(), "3");
+    assertEquals("Error deleting node with value 2", "3", node.getNext().getData());
     
     // Test Node.setData
     node.setData("123");
-    assertEquals("Set data did not work properly", node.getData(), "123");
+    assertEquals("Set data did not work properly", "123", node.getData());
 
   }
 

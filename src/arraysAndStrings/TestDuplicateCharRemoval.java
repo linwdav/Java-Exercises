@@ -18,9 +18,9 @@ public class TestDuplicateCharRemoval {
     String a = test.removeDuplicates("Hello");
     String b = test.removeDuplicates("World");
     String c = test.removeDuplicates("abcabcdefg");
-    assertEquals("'Hello' should have returned 'Helo'", a, "Helo");
-    assertEquals("'World' should have returned 'World'", b, "World");
-    assertEquals("'abcabcdefgc' should have returned 'abcdefg'", c, "abcdefg");
+    assertEquals("'Hello' should have returned 'Helo'", "Helo", a);
+    assertEquals("'World' should have returned 'World'", "World", b);
+    assertEquals("'abcabcdefgc' should have returned 'abcdefg'", "abcdefg", c);
   }
 
 }

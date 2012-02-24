@@ -27,7 +27,7 @@ public class TestNode {
     // Test that 5 nodes have been added to the linked list
     node = head;
     for (int i = 0; i < 5; i++) {
-      assertEquals("Error with node #" + i, node.getData(), String.valueOf(i));
+      assertEquals("Error with node #" + i, String.valueOf(i), node.getData());
       node = node.getNext();
     }
     
@@ -38,7 +38,7 @@ public class TestNode {
     // Test that the head and tail were deleted
     node = head;
     for (int i = 1; i < 4; i++) {
-      assertEquals("Error with node #" + i, node.getData(), String.valueOf(i));
+      assertEquals("Error with node #" + i, String.valueOf(i), node.getData());
       node = node.getNext();
     }
     
@@ -47,11 +47,11 @@ public class TestNode {
     
     // Test that the node with value 2 has been deleted
     node = head;
-    assertEquals("Error deleting node with value 2", node.getNext().getData(), "3");
+    assertEquals("Error deleting node with value 2", "3", node.getNext().getData());
     
     // Test Node.setData
     node.setData("123");
-    assertEquals("Set data did not work properly", node.getData(), "123");
+    assertEquals("Set data did not work properly", "123", node.getData());
 
   }
 

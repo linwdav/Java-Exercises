@@ -43,18 +43,18 @@ public class TestRemoveDuplicates {
     node = head;
     counter = 0;
     while (node != null) {
-      assertEquals("Node " + counter + " should not be there", node.getData(),
-          String.valueOf(counter));
+      assertEquals("Node " + counter + " should not be there", String.valueOf(counter),
+          node.getData());
       node = node.getNext();
       counter++;
     }
-    
+
     // Test that no nodes have been removed because there are no duplicates
     node = head;
     counter = 0;
     while (node != null) {
-      assertEquals("Node " + counter + " should not be there", node.getData(),
-          String.valueOf(counter));
+      assertEquals("Node " + counter + " should not be there", String.valueOf(counter),
+          node.getData());
       node = node.getNext();
       counter++;
     }

@@ -18,9 +18,9 @@ public class TestStringReversal {
     String a = test.reverseString("Hello");
     String b = test.reverseString("World");
     String c = test.reverseString("Lol");
-    assertEquals("'Hello' should have returned 'olleH'", a, "olleH");
-    assertEquals("'World' should have returned 'dlroW'", b, "dlroW");
-    assertEquals("'Lol' should have returned 'loL'", c, "loL");
+    assertEquals("'Hello' should have returned 'olleH'", "olleH", a);
+    assertEquals("'World' should have returned 'dlroW'", "dlroW", b);
+    assertEquals("'Lol' should have returned 'loL'", "loL", c);
   }
 
 }
