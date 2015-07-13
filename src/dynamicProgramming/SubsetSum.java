@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * Given a set of non negative numbers and a total, find if there exists a subset in this set whose sum is same as total.
+ * Time complexity is O(n^2)
  */
 public class SubsetSum {
 

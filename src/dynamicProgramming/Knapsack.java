@@ -1,10 +1,12 @@
 package DynamicProgramming;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Given a bag which can only take certain weight W. Given list of items with their weights and price. How do you fill this bag to maximize value of items in the bag.
+ * Time complexity is O(n^2)
  */
 public class Knapsack {
 
@@ -27,6 +29,8 @@ public class Knapsack {
 		if (capacity == 0 || items.isEmpty()) {
 			return solution;
 		}
+		
+		Collections.sort(items);
 		
 		int[][] cache = new int[items.size()][capacity + 1];
 		
